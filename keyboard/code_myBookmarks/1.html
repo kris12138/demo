@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="1.css">
+</head>
+<body>
+    <div class="main-wapper">
+        <main id="main"></main></div>
+    <footer></footer>
+    <script>
+        hash=init()['hash']
+        keys=init()['keys']
+        getKeyBoard(keys,hash)
+        listenToUser(hash)
+
+
+
+
+
+        function init(){
+            var keys={
+                '0':{'0':'q','1':'w','2':'e','3':'r','4':'t','5':'y','6':'u','7':'i','8':'o','9':'p'},
+                '1':{'0':'a','1':'s','2':'d','3':'f','4':'g','5':'h','6':'j','7':'k','8':'l'},
+                '2':{'0':'z','1':'x','2':'c','3':'v','4':'b','5':'n','6':'m'} }
+            var hash={
+                'c':"weibo.com",'e':"ele.me",'f':"qq.com",'g':"github.com",'i':"iqiyi.com",
+                'm':"mcdonalds.com",'o':"opera.com",'q':"qq.com",'t':"qq.com",'v':
+                "qq.com",'w':"weibo.com",'x':"qq.com",'y':"weibo.com",'z':"zhihu.com"}
+            var localStorageHash=JSON.parse( localStorage.getItem("uuu"))
+            if(localStorageHash){
+                hash=localStorageHash}
+                console.log(hash)
+            return {'hash':hash,'keys':keys}
+        }
+
+
+        function createTag(tagName){
+            var tag=document.createElement(tagName)
+            return tag
+        }
+
+
+        function createTagButton(tagName){
+            var button=createTag('button')
+            button.textContent='编辑'
+
+
+            button.onclick=function(aa){
+                        ss=prompt()
+                        hash[aa['target'].previousSibling.innerText]=ss
+                        localStorage.setItem("uuu", JSON.stringify(hash));  
+                        console.log(aa['target'].nextSibling.src)
+                        var img=aa['target'].nextSibling
+                        img.src='http://www.'+ss+'/favicon.ico'    
+                        img.onerror=function(a){
+                            img.src='./img/error.png'
+                            }}
+            return button
+        }
+
+
+        function createTagImg(tagName,key,hash){
+            var img=createTag('img')
+            if(hash[key]){img.src='http://www.'+hash[key]+'/favicon.ico'}
+            else{img.src='./img/error.png'}
+            img.onerror=function(a){img.src='./img/error.png'}
+            return img
+        }
+
+        function createTagSpan(tagName,key){
+            var span=createTag('span')
+            span.textContent=key
+            return span
+        }
+        function getKeyBoard(keys,hash){
+            for(var i in keys){
+                var div=createTag('div')
+                main.appendChild(div)
+
+                for(var j in keys[i])
+                {
+                    var kbd=createTag('kbd')
+                    var span=createTagSpan('span',keys[i][j])
+                    var button=createTagButton('button','编辑')
+                    var img=createTagImg('img',keys[i][j],hash)
+
+                    div.appendChild(kbd)
+                    kbd.appendChild(span)
+                    kbd.appendChild(button)
+                    kbd.appendChild(img)
+            
+                    
+                }
+                }
+                            }
+       
+
+        function listenToUser(hash){
+            
+            document.onkeypress=function(aaa){
+            site='http://www.'+hash[aaa['key']]
+            window.open(site)
+            
+        }
+            
+        }
+        
+    </script>
+
+
+    
+</body>
+</html>

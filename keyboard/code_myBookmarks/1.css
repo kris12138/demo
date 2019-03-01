@@ -1,0 +1,57 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    list-style: none
+}
+body{
+    height: 100vh;
+    background: url(./img/sky.jpg) no-repeat;
+    background-size: cover;
+}
+kbd{
+    height: 50px;
+    width: 50px;
+    border: 2px solid #373737;
+    padding: 20px 30px;
+    margin: 20px;
+    color: #C5C5C5;
+    font-size: 15px;
+    background: linear-gradient(to bottom, #45484d 11%,#000000 100%);
+    border-radius: 13px;
+    box-shadow: 0 0 0 1px #1A1B1C, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
+    position: relative;
+
+}
+#main>div{
+    text-align: center;
+    padding:30px;
+    background-color:rgba(255,255,255,0.2);;
+}
+.main-wapper{
+    display:flex;
+        align-items:center;
+        justify-content:center;
+        height: 100vh;
+}
+kbd>button{
+    height: 20px;
+    width: 30px;;;
+    position:absolute;
+    bottom:0px;
+    right: 0px;
+    font-size: 8px;
+    display: none;
+}
+kbd:hover>button{
+    display: inline;
+
+}
+kbd>img{
+    height: 15px;
+    width: 15px;;;
+    position:absolute;
+    bottom:2px;
+    left: 2px;
+    
+}
+

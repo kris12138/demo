@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="1.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <svg class="icon" id="draw" >
+        <use xlink:href="#icon-draw"></use></svg>
+    <svg class="icon" id="eraser" >
+        <use xlink:href="#icon-eraser"></use></svg>
+    <svg class="icon" id="download" >
+        <use xlink:href="#icon-download"></use></svg>
+        
+    <ul class="color">
+        <li id="green"></li>
+        <li id="red"></li>
+        <li id="blue"></li>
+    </ul>
+
+    <ul class="width">
+            <li id="thin"></li>
+            <li id="thick"></li>
+            <li id="heavy"></li>
+        </ul>
+        
+      
+
+    <script>
+
+        var canvas=document.getElementById('canvas')
+        var height=document.documentElement.clientHeight
+        var width=document.documentElement.clientWidth
+        canvas.height=height
+        canvas.width=width
+        var draw=document.getElementById('draw')
+        var eraser=document.getElementById('eraser')
+        var green=document.getElementById('green')
+        var red=document.getElementById('red')
+        var blue=document.getElementById('blue')
+        var thin=document.getElementById('thin')
+        var thick=document.getElementById('thick')
+        var heavy=document.getElementById('heavy')
+        var download=document.getElementById('download')
+        var context=canvas.getContext('2d')
+        var draw_useing=false
+        var draw_useing_painting=false
+        var eraser_useing=false
+        var eraser_useing_painting=false
+
+        var painting_color='black'
+        var painting_width=10
+
+
+        green.onclick=function(a){
+            painting_color='green'
+
+        }
+        red.onclick=function(a){
+            painting_color='red'
+
+        }
+        blue.onclick=function(a){
+            painting_color='blue'
+
+        }
+        thin.onclick=function(a){
+            painting_width=2
+
+        }
+        thick.onclick=function(a){
+            painting_width=10
+
+        }
+        heavy.onclick=function(a){
+            painting_width=20
+
+        }
+        eraser.onclick=function(a){
+            draw_useing=false
+            eraser_useing=true
+        }
+        draw.onclick=function(a){
+            draw_useing=true
+            eraser_useing=false
+        }
+        download.onclick=function(a){
+            draw_useing=false
+            eraser_useing=false
+            var url=canvas.toDataURL('./imge/png')
+            var a=document.createElement('a')
+            document.body.appendChild(a)
+            // document.body.appendchild(a)
+            a.href=url
+            a.download=url
+            a.click()
+        }
+        
+        
+        
+
+
+
+
+        if(document.body.ontouchstart==undefined){
+            document.onmousedown=function(a){
+            if(draw_useing){
+                draw_useing_painting=true
+                var x=a.clientX
+                var y=a.clientY
+                context.strokeStyle = painting_color
+                context.lineWidth = painting_width
+                context.beginPath();
+                context.moveTo(x, y);
+            }
+            if(eraser_useing){
+                eraser_useing_painting=true
+                var x=a.clientX
+                var y=a.clientY
+                context.clearRect(x, y, 30, 30)
+            }
+        }
+        document.onmousemove=function(a){
+            if(draw_useing){
+                if(draw_useing_painting){
+                    var x=a.clientX
+                    var y=a.clientY
+                    context.lineTo(x, y);
+                    context.stroke();
+                    }
+            }
+            if(eraser_useing){
+                if(eraser_useing_painting){
+                    var x=a.clientX
+                    var y=a.clientY
+                    context.clearRect(x, y, 30, 30)
+                }
+            }           
+        }  
+        document.onmouseup=function(a){
+            if(draw_useing){
+                draw_useing_painting=false
+            }
+            if(eraser_useing){
+                eraser_useing_painting=false
+            }           
+        } 
+        }
+        if(document.body.ontouchstart==null){
+            document.ontouchstart=function(a){
+                if(draw_useing){
+                    draw_useing_painting=true
+                    var x=a.touches[0].clientX
+                    var y=a.touches[0].clientY
+                    context.strokeStyle = painting_color
+                    context.lineWidth = painting_width
+                    context.beginPath();
+                    context.moveTo(x, y);
+            }
+                if(eraser_useing){
+                    eraser_useing_painting=true
+                    var x=a.touches[0].clientX
+                    var y=a.touches[0].clientY
+                    context.clearRect(x, y, 30, 30)
+                }
+            }
+            document.ontouchmove=function(a){
+                if(draw_useing){
+                    if(draw_useing_painting){
+                        var x=a.touches[0].clientX
+                        var y=a.touches[0].clientY
+                        context.lineTo(x, y);
+                        context.stroke();
+                    }
+                }
+
+                if(eraser_useing){
+                    if(eraser_useing_painting){
+                        var x=a.touches[0].clientX
+                        var y=a.touches[0].clientY
+                        context.clearRect(x, y, 30, 30)
+                    }   
+                }           
+        }
+        
+
+        }
+    </script>
+    <script src="//at.alicdn.com/t/font_882475_zxbbkt2uuy.js">
+    </script>
+    
+</body>
+</html>

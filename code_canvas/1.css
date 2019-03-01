@@ -1,0 +1,92 @@
+canvas{
+    background-color: rgb(224, 245, 224);
+    /* height: 100vh;
+    width: 100vh; */
+    /* position: fixed; */
+    
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    width: 100vh;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+#draw{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    margin: 10px;
+}
+#eraser{
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    margin: 10px;
+}
+#download{
+    position: absolute;
+    top: 5px;
+    left: 60px;
+    margin: 10px;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+.color>li{
+    position: absolute;
+    border: 8px solid rgb(224, 245, 224);
+    margin: 10px 0px;
+    left: 12px;
+    border-radius: 50%;
+
+ }
+ .color>#green{
+    border-color: green;
+    top: 30px;
+ }
+ .color>#red{
+    border-color: red;
+    top: 50px;
+}
+.color>#blue{
+    border-color: blue;
+    top: 70px;
+}
+li{
+    list-style: none;
+}
+ 
+
+
+.width>li{
+    position: absolute;
+    border: 3px solid black;
+    padding: 0px 8px;
+    margin: 15px 0px;
+    left: 40px;
+
+ }
+ .width>#thin{
+    top: 30px;
+    border-width: 1px;
+    
+ }
+ .width>#thick{
+    top: 50px;
+    border-width: 2px;
+}
+.width>#heavy{
+    top: 70px;
+    border-width: 3px;
+}
+li{
+    list-style: none;
+}
+ 
